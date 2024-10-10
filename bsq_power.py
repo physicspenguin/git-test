@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+class PowerClass():
+  def __init__(self):
+    pass
 
 BSQ = 8
 beam_div = 0.3  # mrad, 1/e2 points (full angle)
@@ -25,6 +28,8 @@ Is = (w_0/w) ** 2 * np.exp(-2*r2s/w**2)
 def polar2cart(r, phi):
      return (r*np.sin(phi), r*np.cos(phi))
 
+prev_radius_m = 0
+prev_radius = 0
 plt.figure()
 
 plt.imshow(Is, extent=(-receiver_fov/2, receiver_fov/2, -receiver_fov/2, receiver_fov/2),
@@ -36,8 +41,6 @@ n_subrays = []
 area_subrays = []
 rec_power_subrays = []
 
-prev_radius_m = 0
-prev_radius = 0
 for i_circle in range(BSQ):
     n_sub = int(i_circle * np.pi * 2) if i_circle > 0 else 1  # special case for central subray
     angle_rho = receiver_fov/2 * (i_circle/(BSQ-0.5))  # subtract 0.5 so that the distance between
