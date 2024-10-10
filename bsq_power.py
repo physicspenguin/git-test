@@ -25,11 +25,11 @@ Is = (w_0/w) ** 2 * np.exp(-2*r2s/w**2)
 def polar2cart(r, phi):
      return (r*np.sin(phi), r*np.cos(phi))
 
-plt.figure()
+# plt.figure()
 
-plt.imshow(Is, extent=(-receiver_fov/2, receiver_fov/2, -receiver_fov/2, receiver_fov/2),
-           cmap='viridis', clim=(0, np.max(Is)))
-cmap = matplotlib.cm.get_cmap('Accent')
+# plt.imshow(Is, extent=(-receiver_fov/2, receiver_fov/2, -receiver_fov/2, receiver_fov/2),
+#            cmap='viridis', clim=(0, np.max(Is)))
+# cmap = matplotlib.cm.get_cmap('Accent')
 
 power_subrays = []
 n_subrays = []
@@ -97,15 +97,6 @@ plt.title('Subrays and irradiance')
 plt.tight_layout()
 plt.show()
 
-plt.figure()
-plt.bar(range(len(power_subrays)), power_subrays*n_subrays, color='grey', label='Sum over areas at circle')
-plt.bar(range(len(power_subrays)), power_subrays, color='blue', label='Single area at circle')
-plt.title('Power per subray at different concentric levels')
-plt.xlabel('Circle index')
-plt.ylabel('Subray power')
-plt.legend()
-plt.tight_layout()
-plt.show()
 
 plt.figure()
 plt.bar(range(len(area_subrays)), area_subrays*n_subrays, color='grey', label='Sum over subrays at circle')
@@ -114,6 +105,16 @@ plt.title(f'Total area: {np.sum(area_subrays*n_subrays):.3f} [m²]\n'
            'Area per subray at different concentric levels')
 plt.xlabel('Circle index')
 plt.ylabel('Subray area')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+plt.figure()
+plt.bar(range(len(power_subrays)), power_subrays*n_subrays, color='grey', label='Sum over areas at circle')
+plt.bar(range(len(power_subrays)), power_subrays, color='blue', label='Single area at circle')
+plt.title('Power per subray at different concentric levels')
+plt.xlabel('Circle index')
+plt.ylabel('Subray power')
 plt.legend()
 plt.tight_layout()
 plt.show()
